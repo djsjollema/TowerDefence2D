@@ -1,25 +1,32 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class WaypointFollower : MonoBehaviour
 {
-    [SerializeField] Transform[] waypoints;
+    Path path;
     [SerializeField] float speed = 1.0f;
     [SerializeField] int nextWaypointIndex = 10;
     [SerializeField] float reachedWaypointClearance = 0.2f;
     [SerializeField] GameObject trump;
     Animator animator;
 
+    private void Awake()
+    {
+        path = FindAnyObjectByType<Path>();
+    }
+
     void Start()
     {
         animator = trump.GetComponent<Animator>();
-        transform.position = waypoints[0].position;
+        transform.position = path.waypoints[0].position;
         
     }
 
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[nextWaypointIndex].position, Time.deltaTime * speed);
-        if (Vector3.Distance(transform.position, waypoints[nextWaypointIndex].position) < reachedWaypointClearance)
+        transform.position = Vector3.MoveTowards(transform.position, path.waypoints[nextWaypointIndex].position, Time.deltaTime * speed);
+        if (Vector3.Distance(transform.position, path.waypoints[nextWaypointIndex].position) < reachedWaypointClearance)
         {
             nextWaypointIndex++;
             switch (nextWaypointIndex)
@@ -38,10 +45,11 @@ public class WaypointFollower : MonoBehaviour
 
             }
 
-            if (nextWaypointIndex >= waypoints.Length)
+            if (nextWaypointIndex >= path.waypoints.Length)
             {
-                transform.position = waypoints[0].position;
-                nextWaypointIndex = 1;
+                Destroy(gameObject);
+                //transform.position = waypoints[0].position;
+                //nextWaypointIndex = 1;
             }
         }
     }
