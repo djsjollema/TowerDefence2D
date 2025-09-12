@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(2f);
             Instantiate(EnemyPrefab);
         }
     }

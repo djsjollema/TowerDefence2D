@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f09b114c105493d4c83845d08db3fb5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 1
   nextWaypointIndex: 1
   reachedWaypointClearance: 0.2
   trump: {fileID: 5200823337338373714}

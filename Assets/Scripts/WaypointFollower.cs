@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class WaypointFollower : MonoBehaviour
 {
     Path path;
-    [SerializeField] float speed = 1.0f;
+    [SerializeField] float speed = 0.5f;
     [SerializeField] int nextWaypointIndex = 10;
     [SerializeField] float reachedWaypointClearance = 0.2f;
     [SerializeField] GameObject trump;
